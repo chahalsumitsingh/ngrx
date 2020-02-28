@@ -1,0 +1,22 @@
+<div *ngIf="errorMessage$ | async as errorMessage">
+    {{errorMessage}}
+</div>
+
+<ul *ngFor="let product of products">
+    <li> {{product.Name}}
+
+        <ng-container *ngIf="productDisplayCode">
+            {{product.ProductCode}}
+        </ng-container>
+        <button (click)="editRecord(product)">Edit</button>
+    </li>
+    
+</ul>
+
+<div>
+<input [checked]="productDisplayCode" (change)="checkChanged($event.target.checked)" type="checkbox"> Show Product code
+</div>
+
+<button type="button" (click)="addProduct = true; addNewProduct()">Add Product</button>
+
+<app-form *ngIf="addProduct"></app-form>
